@@ -1,0 +1,21 @@
+{
+  "name": "weireidea",
+  "version": "1.0.0",
+  "description": "Weibo trend analysis with third-party Claude API",
+  "main": ".github/scripts/run-analysis.js",
+  "scripts": {
+    "analyze": "node .github/scripts/run-analysis.js",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "weibo",
+    "trend-analysis",
+    "claude",
+    "api"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
