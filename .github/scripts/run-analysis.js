@@ -111,7 +111,7 @@ async function callClaudeAPI(messages, systemPrompt) {
 
     const postData = JSON.stringify({
       model: 'claude-sonnet-4-5-20250929',
-      max_tokens: 8000,
+      max_tokens: 16000,
       system: systemPrompt,
       messages: messages
     });
