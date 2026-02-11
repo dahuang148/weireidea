@@ -11,7 +11,7 @@ const path = require('path');
 
 // Configuration
 const CLAUDE_API_KEY = process.env.CLAUDE_API_KEY;
-const CLAUDE_API_BASE = process.env.CLAUDE_API_BASE || 'https://api.uucode.org';
+const CLAUDE_API_BASE = process.env.CLAUDE_API_BASE || 'https://code.newcli.com/claude/aws';
 const WEIBO_API_ENDPOINT = process.env.WEIBO_API_ENDPOINT;
 
 if (!CLAUDE_API_KEY) {
