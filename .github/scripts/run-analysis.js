@@ -20,6 +20,57 @@ if (!CLAUDE_API_KEY) {
 }
 
 /**
+ * Fetch Weibo trending topics
+ */
+async function fetchWeiboTrends() {
+  return new Promise((resolve, reject) => {
+    const url = new URL(WEIBO_API_ENDPOINT || 'https://weibo.com/ajax/side/hotSearch');
+
+    const options = {
+      hostname: url.hostname,
+      port: url.port || 443,
+      path: url.pathname + url.search,
+      method: 'GET',
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+        'Accept': 'application/json'
+      }
+    };
+
+    const req = https.request(options, (res) => {
+      let data = '';
+      res.on('data', (chunk) => { data += chunk; });
+      res.on('end', () => {
+        try {
+          const json = JSON.parse(data);
+          const trends = json.data?.realtime || [];
+          resolve(trends.map(t => ({
+            title: t.word || t.note,
+            heat: t.num || 0,
+            rank: t.rank || 0
+          })));
+        } catch (e) {
+          console.error('Parse error:', e.message);
+          resolve([]);
+        }
+      });
+    });
+
+    req.on('error', (e) => {
+      console.error('Request error:', e.message);
+      resolve([]);
+    });
+
+    req.setTimeout(10000, () => {
+      req.destroy();
+      resolve([]);
+    });
+
+    req.end();
+  });
+}
+
+/**
  * Call Claude API
  */
 async function callClaudeAPI(messages, systemPrompt) {
@@ -78,16 +129,35 @@ async function main() {
     const skillContent = fs.readFileSync(skillPath, 'utf-8');
     console.log('Skill loaded successfully');
 
-    const systemPrompt = `You are a Weibo trend analysis expert. ${skillContent}`;
+    const systemPrompt = `You are a Weibo trend analysis and product innovation expert. You will receive Weibo trending topics data and generate creative product ideas based on social trends.`;
 
     const today = new Date().toISOString().split('T')[0];
-    const userMessage = `Please execute the weibo-trend-analyzer skill.
-API Endpoint: ${WEIBO_API_ENDPOINT || 'https://weibo.com/ajax/side/hotSearch'}
 
-IMPORTANT: You must output the COMPLETE HTML code directly in your response.
-Do NOT just describe the report or say you've saved it.
-Output the full HTML starting with <!DOCTYPE html> and ending with </html>.
-The HTML filename should be: weibo-trend-report-${today}.html`;
+    // First, fetch Weibo trending topics
+    console.log('Fetching Weibo trending topics...');
+    const weiboData = await fetchWeiboTrends();
+
+    if (!weiboData || weiboData.length === 0) {
+      throw new Error('Failed to fetch Weibo trending topics');
+    }
+
+    console.log(`Fetched ${weiboData.length} trending topics`);
+
+    const userMessage = `Based on these Weibo trending topics, generate a comprehensive HTML report with product innovation ideas.
+
+Trending Topics:
+${JSON.stringify(weiboData.slice(0, 20), null, 2)}
+
+Requirements:
+1. Analyze each topic and score it based on:
+   - Interest Score (80%): How engaging and novel is this trend?
+   - Utility Score (20%): How practical are products based on this trend?
+2. Generate creative product ideas for high-scoring topics
+3. Output COMPLETE HTML code (from <!DOCTYPE html> to </html>)
+4. Use modern, beautiful styling with gradients and cards
+5. Include topic rankings, scores, and product ideas
+
+CRITICAL: Output the FULL HTML code directly. Do NOT use any tool calls or function calls.`;
 
     console.log('Calling Claude API...');
     const response = await callClaudeAPI([{ role: 'user', content: userMessage }], systemPrompt);
