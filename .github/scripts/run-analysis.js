@@ -12,7 +12,7 @@ const path = require('path');
 // Configuration
 const CLAUDE_API_KEY = process.env.CLAUDE_API_KEY;
 const CLAUDE_API_BASE = process.env.CLAUDE_API_BASE || 'https://code.newcli.com/claude/aws';
-const WEIBO_API_ENDPOINT = process.env.WEIBO_API_ENDPOINT;
+const WEIBO_API_ENDPOINT = process.env.WEIBO_API_ENDPOINT || 'https://apis.tianapi.com/weibohot/index?key=fb9e1bf78f44d1d927fcf18883d114fb';
 
 if (!CLAUDE_API_KEY) {
   console.error('Error: CLAUDE_API_KEY environment variable is required');
@@ -54,13 +54,31 @@ async function fetchWeiboTrends() {
 
         try {
           const json = JSON.parse(data);
-          const trends = json.data?.realtime || [];
-          console.log(`Parsed ${trends.length} trends`);
-          resolve(trends.map(t => ({
-            title: t.word || t.note,
-            heat: t.num || 0,
-            rank: t.rank || 0
-          })));
+
+          // Handle tianapi.com response format
+          if (json.code === 200 && json.result?.list) {
+            const trends = json.result.list;
+            console.log(`Parsed ${trends.length} trends from tianapi`);
+            resolve(trends.map((t, index) => ({
+              title: t.hotword || t.title,
+              heat: t.hotwordnum || 0,
+              rank: index + 1
+            })));
+          }
+          // Handle weibo.com response format
+          else if (json.data?.realtime) {
+            const trends = json.data.realtime;
+            console.log(`Parsed ${trends.length} trends from weibo`);
+            resolve(trends.map(t => ({
+              title: t.word || t.note,
+              heat: t.num || 0,
+              rank: t.rank || 0
+            })));
+          }
+          else {
+            console.error('Unknown response format:', JSON.stringify(json).substring(0, 200));
+            resolve([]);
+          }
         } catch (e) {
           console.error('Parse error:', e.message);
           console.error('Response:', data.substring(0, 500));
