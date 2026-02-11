@@ -204,18 +204,35 @@ CRITICAL: Output the FULL HTML code directly. Do NOT use any tool calls or funct
 
     console.log('✅ Analysis completed');
     const text = response.content.filter(b => b.type === 'text').map(b => b.text).join('\n');
+    console.log('Response length:', text.length, 'characters');
     console.log('Response preview:', text.substring(0, 300) + '...');
 
     // Extract HTML content from response (handle markdown code blocks)
     let htmlContent = null;
 
-    // Try to extract from markdown code block first
-    const markdownMatch = text.match(/```html\s*([\s\S]*?)\s*```/i);
+    // Try to extract from markdown code block first (more flexible matching)
+    const markdownMatch = text.match(/```html\s*([\s\S]*?)```/i);
     if (markdownMatch) {
       htmlContent = markdownMatch[1].trim();
       console.log('Extracted HTML from markdown code block');
-    } else {
-      // Try to extract raw HTML
+    }
+
+    // If markdown extraction failed, try without closing ```
+    if (!htmlContent && text.includes('```html')) {
+      const startIndex = text.indexOf('```html') + 7;
+      const endIndex = text.lastIndexOf('```');
+      if (endIndex > startIndex) {
+        htmlContent = text.substring(startIndex, endIndex).trim();
+        console.log('Extracted HTML from partial markdown block');
+      } else {
+        // No closing ```, take everything after ```html
+        htmlContent = text.substring(startIndex).trim();
+        console.log('Extracted HTML without closing marker');
+      }
+    }
+
+    // Try to extract raw HTML as fallback
+    if (!htmlContent) {
       const htmlMatch = text.match(/<!DOCTYPE html>[\s\S]*<\/html>/i);
       if (htmlMatch) {
         htmlContent = htmlMatch[0];
@@ -223,14 +240,15 @@ CRITICAL: Output the FULL HTML code directly. Do NOT use any tool calls or funct
       }
     }
 
-    if (htmlContent) {
+    if (htmlContent && htmlContent.includes('<!DOCTYPE html>')) {
       const reportFileName = `weibo-trend-report-${today}.html`;
       fs.writeFileSync(reportFileName, htmlContent, 'utf-8');
       const stats = fs.statSync(reportFileName);
       console.log(`\n✅ Report saved: ${reportFileName} (${(stats.size / 1024).toFixed(2)} KB)`);
     } else {
-      console.warn('\n⚠️  No HTML content found in response');
-      console.log('Full response:', text.substring(0, 1000));
+      console.warn('\n⚠️  No valid HTML content found in response');
+      console.log('Response starts with:', text.substring(0, 100));
+      console.log('Response ends with:', text.substring(text.length - 100));
     }
   } catch (error) {
     console.error('\n❌ Error:', error.message);
