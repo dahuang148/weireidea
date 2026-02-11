@@ -206,18 +206,31 @@ CRITICAL: Output the FULL HTML code directly. Do NOT use any tool calls or funct
     const text = response.content.filter(b => b.type === 'text').map(b => b.text).join('\n');
     console.log('Response preview:', text.substring(0, 300) + '...');
 
-    // Extract HTML content from response
-    const htmlMatch = text.match(/<!DOCTYPE html>[\s\S]*<\/html>/i);
+    // Extract HTML content from response (handle markdown code blocks)
+    let htmlContent = null;
 
-    if (htmlMatch) {
-      const htmlContent = htmlMatch[0];
+    // Try to extract from markdown code block first
+    const markdownMatch = text.match(/```html\s*([\s\S]*?)\s*```/i);
+    if (markdownMatch) {
+      htmlContent = markdownMatch[1].trim();
+      console.log('Extracted HTML from markdown code block');
+    } else {
+      // Try to extract raw HTML
+      const htmlMatch = text.match(/<!DOCTYPE html>[\s\S]*<\/html>/i);
+      if (htmlMatch) {
+        htmlContent = htmlMatch[0];
+        console.log('Extracted raw HTML');
+      }
+    }
+
+    if (htmlContent) {
       const reportFileName = `weibo-trend-report-${today}.html`;
       fs.writeFileSync(reportFileName, htmlContent, 'utf-8');
       const stats = fs.statSync(reportFileName);
       console.log(`\n✅ Report saved: ${reportFileName} (${(stats.size / 1024).toFixed(2)} KB)`);
     } else {
       console.warn('\n⚠️  No HTML content found in response');
-      console.log('Full response:', text);
+      console.log('Full response:', text.substring(0, 1000));
     }
   } catch (error) {
     console.error('\n❌ Error:', error.message);
