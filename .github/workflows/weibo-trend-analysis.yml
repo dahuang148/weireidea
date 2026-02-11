@@ -33,17 +33,23 @@ jobs:
           node .github/scripts/run-analysis.js
 
       - name: Upload Report
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: weibo-trend-report-${{ github.run_number }}
           path: weibo-trend-report-*.html
           retention-days: 30
+          if-no-files-found: warn
 
       - name: Commit Report to Repository
         if: success()
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add weibo-trend-report-*.html
-          git commit -m "Add Weibo trend analysis report - $(date +'%Y-%m-%d')" || echo "No changes to commit"
-          git push || echo "Nothing to push"
+          if ls weibo-trend-report-*.html 1> /dev/null 2>&1; then
+            git config --local user.email "github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git add weibo-trend-report-*.html
+            git commit -m "Add Weibo trend analysis report - $(date +'%Y-%m-%d')"
+            git push
+          else
+            echo "No report file found, skipping commit"
+          fi
