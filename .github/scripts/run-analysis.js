@@ -111,7 +111,7 @@ async function callClaudeAPI(messages, systemPrompt) {
 
     const postData = JSON.stringify({
       model: 'claude-sonnet-4-5-20250929',
-      max_tokens: 16000,
+      max_tokens: 32000,
       system: systemPrompt,
       messages: messages
     });
@@ -183,19 +183,20 @@ async function main() {
 
     console.log(`Fetched ${weiboData.length} trending topics`);
 
-    const userMessage = `Based on these Weibo trending topics, generate a comprehensive HTML report with product innovation ideas.
+    const userMessage = `Based on these Weibo trending topics, generate a concise HTML report with product innovation ideas.
 
-Trending Topics:
-${JSON.stringify(weiboData.slice(0, 20), null, 2)}
+Trending Topics (Top 10):
+${JSON.stringify(weiboData.slice(0, 10), null, 2)}
 
 Requirements:
-1. Analyze each topic and score it based on:
-   - Interest Score (80%): How engaging and novel is this trend?
-   - Utility Score (20%): How practical are products based on this trend?
-2. Generate creative product ideas for high-scoring topics
+1. Analyze ONLY the top 10 topics
+2. For each topic, provide:
+   - Interest Score (0-80): How engaging is this trend?
+   - Utility Score (0-20): How practical are products based on this?
+   - ONE concise product idea (2-3 sentences max)
 3. Output COMPLETE HTML code (from <!DOCTYPE html> to </html>)
-4. Use modern, beautiful styling with gradients and cards
-5. Include topic rankings, scores, and product ideas
+4. Keep the HTML concise - use simple, clean styling
+5. Make sure to close all HTML tags properly
 
 CRITICAL: Output the FULL HTML code directly. Do NOT use any tool calls or function calls.`;
 
