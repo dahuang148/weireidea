@@ -49,8 +49,8 @@
 
         .stat-card {
             background: white;
-            padding: 25px;
             border-radius: 15px;
+            padding: 25px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
@@ -116,16 +116,16 @@
 
         .topic-title {
             font-size: 1.5em;
+            font-weight: bold;
             color: #333;
-            font-weight: 600;
         }
 
         .heat-badge {
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             color: white;
             padding: 8px 20px;
-            border-radius: 25px;
-            font-weight: 600;
+            border-radius: 20px;
+            font-weight: bold;
             white-space: nowrap;
         }
 
@@ -144,30 +144,15 @@
         }
 
         .score-label {
-            font-size: 0.85em;
+            font-size: 0.9em;
             color: #666;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
 
         .score-value {
             font-size: 1.8em;
             font-weight: bold;
             color: #333;
-        }
-
-        .score-bar {
-            height: 8px;
-            background: #e0e0e0;
-            border-radius: 4px;
-            margin-top: 8px;
-            overflow: hidden;
-        }
-
-        .score-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-            border-radius: 4px;
-            transition: width 0.5s ease;
         }
 
         .products-section {
@@ -179,9 +164,9 @@
 
         .products-title {
             font-size: 1.2em;
+            font-weight: bold;
             color: #333;
             margin-bottom: 15px;
-            font-weight: 600;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -192,6 +177,10 @@
             font-size: 1.3em;
         }
 
+        .product-list {
+            list-style: none;
+        }
+
         .product-item {
             background: white;
             padding: 15px;
@@ -200,27 +189,30 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .product-item:last-child {
-            margin-bottom: 0;
-        }
-
         .product-name {
-            font-weight: 600;
+            font-weight: bold;
             color: #667eea;
-            margin-bottom: 8px;
-            font-size: 1.05em;
+            margin-bottom: 5px;
+            font-size: 1.1em;
         }
 
         .product-description {
-            color: #555;
+            color: #666;
             line-height: 1.6;
         }
 
-        .no-products {
-            color: #666;
-            font-style: italic;
-            text-align: center;
-            padding: 10px;
+        .category-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            margin-left: 10px;
+            color: #333;
+        }
+
+        .low-score {
+            opacity: 0.7;
         }
 
         .footer {
@@ -228,21 +220,17 @@
             color: white;
             margin-top: 50px;
             padding: 20px;
-            opacity: 0.9;
+            opacity: 0.8;
         }
 
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 1.8em;
             }
-
+            
             .topic-header {
                 flex-direction: column;
                 align-items: flex-start;
-            }
-
-            .topic-title {
-                font-size: 1.2em;
             }
         }
     </style>
@@ -250,22 +238,26 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🔥 微博热搜趋势分析报告</h1>
-            <p>基于社交媒体热度的产品创新洞察</p>
+            <h1>🚀 微博热搜趋势分析报告</h1>
+            <p>基于社交媒体热点的产品创新洞察</p>
         </div>
 
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-number">20</div>
-                <div class="stat-label">分析话题数</div>
+                <div class="stat-label">热搜话题</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">12</div>
-                <div class="stat-label">高潜力话题</div>
+                <div class="stat-label">高分话题</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">36</div>
-                <div class="stat-label">创新产品方案</div>
+                <div class="stat-label">产品创意</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">85.2</div>
+                <div class="stat-label">平均兴趣度</div>
             </div>
         </div>
 
@@ -276,78 +268,80 @@
                     <div class="rank-badge">1</div>
                     <div class="topic-title">微信9大更新</div>
                 </div>
-                <div class="heat-badge">🔥 1,076,428</div>
+                <div class="heat-badge">🔥 1,129,954</div>
             </div>
             <div class="scores-section">
                 <div class="score-item">
-                    <div class="score-label">兴趣度 (80%)</div>
-                    <div class="score-value">88</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 88%"></div></div>
+                    <div class="score-label">兴趣分数 (80%)</div>
+                    <div class="score-value">92</div>
                 </div>
                 <div class="score-item">
-                    <div class="score-label">实用度 (20%)</div>
-                    <div class="score-value">92</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 92%"></div></div>
+                    <div class="score-label">实用分数 (20%)</div>
+                    <div class="score-value">88</div>
                 </div>
                 <div class="score-item">
                     <div class="score-label">综合评分</div>
-                    <div class="score-value">89</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 89%"></div></div>
+                    <div class="score-value">91.2</div>
                 </div>
             </div>
             <div class="products-section">
                 <div class="products-title">创新产品方案</div>
-                <div class="product-item">
-                    <div class="product-name">微信功能对比分析工具</div>
-                    <div class="product-description">开发一款可视化工具，帮助用户快速了解新旧版本功能差异，提供个性化升级建议和使用教程。</div>
-                </div>
-                <div class="product-item">
-                    <div class="product-name">企业微信升级咨询服务</div>
-                    <div class="product-description">针对企业用户提供微信新功能的培训和集成方案，帮助企业快速适应新版本并优化工作流程。</div>
-                </div>
-                <div class="product-item">
-                    <div class="product-name">微信插件生态平台</div>
-                    <div class="product-description">基于新功能开发第三方插件市场，让开发者创建增强工具，用户可按需定制微信体验。</div>
-                </div>
+                <ul class="product-list">
+                    <li class="product-item">
+                        <div class="product-name">微信功能速查助手 <span class="category-tag">工具类</span></div>
+                        <div class="product-description">AI驱动的微信新功能学习助手，通过交互式教程和视频演示，帮助用户快速掌握9大更新功能，提供个性化学习路径和使用技巧推荐。</div>
+                    </li>
+                    <li class="product-item">
+                        <div class="product-name">企业微信升级顾问服务 <span class="category-tag">B2B服务</span></div>
+                        <div class="product-description">针对企业客户的微信生态升级咨询服务，帮助企业利用新功能优化客���沟通、团队协作和营销策略，提供定制化解决方案。</div>
+                    </li>
+                    <li class="product-item">
+                        <div class="product-name">微信插件市场平台 <span class="category-tag">平台类</span></div>
+                        <div class="product-description">基于微信新开放能力的第三方插件生态平台，开发者可以创建增强功能插件，用户可以按需安装，打造个性化微信体验。</div>
+                    </li>
+                </ul>
             </div>
         </div>
 
-        <!-- Topic 2: 隐瞒小老虎死讯园长被停职 -->
+        <!-- Topic 2: 火箭回收 -->
         <div class="topic-card">
             <div class="topic-header">
                 <div class="topic-title-section">
                     <div class="rank-badge">2</div>
-                    <div class="topic-title">隐瞒小老虎死讯园长被停职</div>
+                    <div class="topic-title">火箭回收</div>
                 </div>
-                <div class="heat-badge">🔥 764,788</div>
+                <div class="heat-badge">🔥 813,759</div>
             </div>
             <div class="scores-section">
                 <div class="score-item">
-                    <div class="score-label">兴趣度 (80%)</div>
-                    <div class="score-value">75</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 75%"></div></div>
+                    <div class="score-label">兴趣分数 (80%)</div>
+                    <div class="score-value">95</div>
                 </div>
                 <div class="score-item">
-                    <div class="score-label">实用度 (20%)</div>
-                    <div class="score-value">68</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 68%"></div></div>
+                    <div class="score-label">实用分数 (20%)</div>
+                    <div class="score-value">72</div>
                 </div>
                 <div class="score-item">
                     <div class="score-label">综合评分</div>
-                    <div class="score-value">74</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 74%"></div></div>
+                    <div class="score-value">90.4</div>
                 </div>
             </div>
             <div class="products-section">
                 <div class="products-title">创新产品方案</div>
-                <div class="product-item">
-                    <div class="product-name">动物园透明化管理系统</div>
-                    <div class="product-description">开发区块链技术支持的动物健康追踪平台，实时公开动物状态信息，增强公众监督和信任。</div>
-                </div>
-                <div class="product-item">
-                    <div class="product-name">动物福利监测APP</div>
-                    <div class="product-description">允许游客和志愿者报告动物异常情况，建立众包监督网络，促进动物保护透明度。</div>
-                </div>
+                <ul class="product-list">
+                    <li class="product-item">
+                        <div class="product-name">航天科普AR体验馆 <span class="category-tag">教育娱乐</span></div>
+                        <div class="product-description">利用AR/VR技术打造沉浸式火箭回收体验，用户可以模拟操控火箭发射和回收全过程，学习航天知识，��合科技馆、学校和家庭使用。</div>
+                    </li>
+                    <li class="product-item">
+                        <div class="product-name">航天主题盲盒系列 <span class="category-tag">消费品</span></div>
+                        <div class="product-description">以中国航天成就为主题的收藏级盲盒产品，包含火箭模型、宇航员手办、航天徽章等，结合NFT数字藏品，激发年轻人对航天的兴趣。</div>
+                    </li>
+                    <li class="product-item">
+                        <div class="product-name">航天直播互动平台 <span class="category-tag">媒体平台</span></div>
+                        <div class="product-description">专注航天发射的实时直播和科普平台，提供多角度高清直播、专家解说、互动问答和航天知识库，打造航天爱好者社区。</div>
+                    </li>
+                </ul>
             </div>
         </div>
 
@@ -358,287 +352,264 @@
                     <div class="rank-badge">3</div>
                     <div class="topic-title">到中国过年成为热潮</div>
                 </div>
-                <div class="heat-badge">🔥 626,432</div>
+                <div class="heat-badge">🔥 676,213</div>
             </div>
             <div class="scores-section">
                 <div class="score-item">
-                    <div class="score-label">兴趣度 (80%)</div>
-                    <div class="score-value">85</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 85%"></div></div>
+                    <div class="score-label">兴趣分数 (80%)</div>
+                    <div class="score-value">88</div>
                 </div>
                 <div class="score-item">
-                    <div class="score-label">实用度 (20%)</div>
-                    <div class="score-value">88</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 88%"></div></div>
+                    <div class="score-label">实用分数 (20%)</div>
+                    <div class="score-value">92</div>
                 </div>
                 <div class="score-item">
                     <div class="score-label">综合评分</div>
-                    <div class="score-value">86</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 86%"></div></div>
+                    <div class="score-value">88.8</div>
                 </div>
             </div>
             <div class="products-section">
                 <div class="products-title">创新产品方案</div>
-                <div class="product-item">
-                    <div class="product-name">春节文化体验定制平台</div>
-                    <div class="product-description">为外国游客提供深度春节文化体验套餐，包括家庭拜访、传统手工艺、地方美食等沉浸式活动。</div>
-                </div>
-                <div class="product-item">
-                    <div class="product-name">多语言春节导游APP</div>
-                    <div class="product-description">集成AR技术的智能导游应用，实时翻译春联、讲解习俗，提供个性化春节旅游路线推荐。</div>
-                </div>
-                <div class="product-item">
-                    <div class="product-name">春节民宿匹配服务</div>
-                    <div class="product-description">连接愿意接待外国游客的中国家庭，提供真实的春节家庭体验，促进文化交流。</div>
-                </div>
+                <ul class="product-list">
+                    <li class="product-item">
+                        <div class="product-name">春节文化体验套餐 <span class="category-tag">旅游服务</span></div>
+                        <div class="product-description">为外国游客定制的中国春节深度体验产品，包含传统家庭年夜饭、庙会游览、非遗手工体验、红包文化讲解等，配备多语言导游和文化顾问。</div>
+                    </li>
+                    <li class="product-item">
+                        <div class="product-name">春节AI翻译助手 <span class="category-tag">工具类</span></div>
+                        <div class="product-description">专为春节场景优化的智能翻译设备，支持方言识别、春节习俗解释、菜单翻译、红包祝福语生成等功能，帮助外国游客无障碍体验中国年。</div>
+                    </li>
+                    <li class="product-item">
+                        <div class="product-name">全球春节文化输出平台 <span class="category-tag">文化��口</span></div>
+                        <div class="product-description">连接中国文化资源与海外市场的B2B平台，帮助海外城市、商场、学校采购春节装饰、表演团队、文化课程，推动春节成为全球性节日。</div>
+                    </li>
+                </ul>
             </div>
         </div>
 
-        <!-- Topic 5: 姚安娜古装 -->
+        <!-- Topic 5: 沈腾找了个最帅的演自己 -->
         <div class="topic-card">
             <div class="topic-header">
                 <div class="topic-title-section">
                     <div class="rank-badge">5</div>
-                    <div class="topic-title">姚安娜古装</div>
+                    <div class="topic-title">沈腾找了个最帅的演自己 <span class="category-tag">电影</span></div>
                 </div>
-                <div class="heat-badge">🔥 596,747</div>
+                <div class="heat-badge">🔥 589,172</div>
             </div>
             <div class="scores-section">
                 <div class="score-item">
-                    <div class="score-label">兴趣度 (80%)</div>
-                    <div class="score-value">78</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 78%"></div></div>
+                    <div class="score-label">兴趣分数 (80%)</div>
+                    <div class="score-value">86</div>
                 </div>
                 <div class="score-item">
-                    <div class="score-label">实用度 (20%)</div>
-                    <div class="score-value">72</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 72%"></div></div>
+                    <div class="score-label">实用分数 (20%)</div>
+                    <div class="score-value">75</div>
                 </div>
                 <div class="score-item">
                     <div class="score-label">综合评分</div>
-                    <div class="score-value">77</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 77%"></div></div>
+                    <div class="score-value">83.8</div>
                 </div>
             </div>
             <div class="products-section">
                 <div class="products-title">创新产品方案</div>
-                <div class="product-item">
-                    <div class="product-name">AI古装造型生成器</div>
-                    <div class="product-description">用户上传照片即可生成多种朝代风格的古装形象，支持社交分享和定制实体写真服务。</div>
-                </div>
-                <div class="product-item">
-                    <div class="product-name">古装租赁订阅平台</div>
-                    <div class="product-description">提供高品质古装服饰月度订阅服务，满足汉服爱好者和影视拍摄需求，降低购买成本。</div>
-                </div>
+                <ul class="product-list">
+                    <li class="product-item">
+                        <div class="product-name">AI换脸娱乐APP <span class="category-tag">娱乐应用</span></div>
+                        <div class="product-description">基于深度学习的趣味换脸应用，用户可以将自己的脸替换到经典电影片段中，生成个性化短视频，支持多种滤镜和特效，适合社交分享。</div>
+                    </li>
+                    <li class="product-item">
+                        <div class="product-name">明星数字分身服务 <span class="category-tag">B2B服务</span></div>
+                        <div class="product-description">为影视公司提供的数字人技术解决方案，创建明星的高精度数字分身，用于危险场景替代、年轻化/老化特效、虚拟代言等商业场景。</div>
+                    </li>
+                    <li class="product-item">
+                        <div class="product-name">电影梗文化周边商城 <span class="category-tag">电商平台</span></div>
+                        <div class="product-description">专注影视梗和名场面的文化周边电商平台，快速响应热门电影话题，推出表情包、T恤、手机壳等周边产品，抓住流量红利期。</div>
+                    </li>
+                </ul>
             </div>
         </div>
 
-        <!-- Topic 6: 8年还清百万债务第一次回老家过年 -->
+        <!-- Topic 6: 挪威选手冬奥摘铜后哭着自曝出轨 -->
         <div class="topic-card">
             <div class="topic-header">
                 <div class="topic-title-section">
                     <div class="rank-badge">6</div>
-                    <div class="topic-title">8年还清百万债务第一次回老家过年</div>
+                    <div class="topic-title">挪威选手冬奥摘铜后哭着自曝出轨</div>
                 </div>
-                <div class="heat-badge">🔥 441,906</div>
+                <div class="heat-badge">🔥 401,820</div>
             </div>
             <div class="scores-section">
                 <div class="score-item">
-                    <div class="score-label">兴趣度 (80%)</div>
+                    <div class="score-label">兴趣分数 (80%)</div>
                     <div class="score-value">82</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 82%"></div></div>
                 </div>
                 <div class="score-item">
-                    <div class="score-label">实用度 (20%)</div>
-                    <div class="score-value">85</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 85%"></div></div>
+                    <div class="score-label">实用分数 (20%)</div>
+                    <div class="score-value">68</div>
                 </div>
                 <div class="score-item">
                     <div class="score-label">综合评分</div>
-                    <div class="score-value">83</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 83%"></div></div>
+                    <div class="score-value">79.2</div>
                 </div>
             </div>
             <div class="products-section">
                 <div class="products-title">创新产品方案</div>
-                <div class="product-item">
-                    <div class="product-name">债务管理与激励APP</div>
-                    <div class="product-description">游戏化债务还款追踪工具，设置里程碑奖励，提供社区支持和理财建议，帮助用户保持还款动力。</div>
-                </div>
-                <div class="product-item">
-                    <div class="product-name">财务重建咨询平台</div>
-                    <div class="product-description">连接专业财务顾问和负债人群，提供个性化还债计划、信用修复指导和心理支持服务。</div>
-                </div>
-                <div class="product-item">
-                    <div class="product-name">励志故事分享社区</div>
-                    <div class="product-description">建立债务逆袭者的故事分享平台，通过真实案例激励他人，提供经验交流和互助网络。</div>
-                </div>
+                <ul class="product-list">
+                    <li class="product-item">
+                        <div class="product-name">运动员心理健康平台 <span class="category-tag">健康服务</span></div>
+                        <div class="product-description">专为职业运动员设计的心理咨询和压力管理平台，提供匿名咨询、情绪追踪、冥想训练、危机干预等服务，帮助运动员应对高压竞技环境。</div>
+                    </li>
+                    <li class="product-item">
+                        <div class="product-name">体育八卦聚合资讯APP <span class="category-tag">媒体应用</span></div>
+                        <div class="product-description">聚焦体育圈热点事件和运动员生活的资讯平台，提供快速、准确的体育新闻和深度报道，满足用户对体育明星的好奇心和关注需求。</div>
+                    </li>
+                </ul>
             </div>
         </div>
 
-        <!-- Topic 9: 火箭回收 -->
-        <div class="topic-card">
-            <div class="topic-header">
-                <div class="topic-title-section">
-                    <div class="rank-badge">9</div>
-                    <div class="topic-title">火箭回收</div>
-                </div>
-                <div class="heat-badge">🔥 384,754</div>
-            </div>
-            <div class="scores-section">
-                <div class="score-item">
-                    <div class="score-label">兴趣度 (80%)</div>
-                    <div class="score-value">90</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 90%"></div></div>
-                </div>
-                <div class="score-item">
-                    <div class="score-label">实用度 (20%)</div>
-                    <div class="score-value">75</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 75%"></div></div>
-                </div>
-                <div class="score-item">
-                    <div class="score-label">综合评分</div>
-                    <div class="score-value">87</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 87%"></div></div>
-                </div>
-            </div>
-            <div class="products-section">
-                <div class="products-title">创新产品方案</div>
-                <div class="product-item">
-                    <div class="product-name">航天科普VR体验馆</div>
-                    <div class="product-description">利用VR技术让公众体验火箭发射和回收��过程，提供沉浸式航天教育，激发科技兴趣。</div>
-                </div>
-                <div class="product-item">
-                    <div class="product-name">火箭发射实时追踪APP</div>
-                    <div class="product-description">提供全球火箭发射时间表、实时直播、3D轨迹可视化和科普解说，打造航天爱好者社区。</div>
-                </div>
-                <div class="product-item">
-                    <div class="product-name">航天主题文创产品线</div>
-                    <div class="product-description">开发火箭模型、太空主题盲盒、航天员周边等文创产品，结合AR技术增强互动体验。</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Topic 10: 电影射雕英雄传侠之大者 -->
+        <!-- Topic 10: 鹅鸭杀 -->
         <div class="topic-card">
             <div class="topic-header">
                 <div class="topic-title-section">
                     <div class="rank-badge">10</div>
-                    <div class="topic-title">电影射雕英雄传侠之大者</div>
+                    <div class="topic-title">鹅鸭杀</div>
                 </div>
-                <div class="heat-badge">🔥 335,206</div>
+                <div class="heat-badge">🔥 298,737</div>
             </div>
             <div class="scores-section">
                 <div class="score-item">
-                    <div class="score-label">兴趣度 (80%)</div>
-                    <div class="score-value">80</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 80%"></div></div>
+                    <div class="score-label">兴趣分数 (80%)</div>
+                    <div class="score-value">85</div>
                 </div>
                 <div class="score-item">
-                    <div class="score-label">实用度 (20%)</div>
-                    <div class="score-value">70</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 70%"></div></div>
+                    <div class="score-label">实用分数 (20%)</div>
+                    <div class="score-value">80</div>
                 </div>
                 <div class="score-item">
                     <div class="score-label">综合评分</div>
-                    <div class="score-value">78</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 78%"></div></div>
+                    <div class="score-value">84.0</div>
                 </div>
             </div>
             <div class="products-section">
                 <div class="products-title">创新产品方案</div>
-                <div class="product-item">
-                    <div class="product-name">武侠IP沉浸式主题乐园</div>
-                    <div class="product-description">打造射雕英雄传实景体验园，结合剧情闯关、武术表演和角色扮演，提供多日游套餐。</div>
-                </div>
-                <div class="product-item">
-                    <div class="product-name">金庸武侠宇宙游戏</div>
-                    <div class="product-description">开发开放世界RPG游戏，整合金庸所有作品角色和故事线，支持多人在线互动和自由探索。</div>
-                </div>
+                <ul class="product-list">
+                    <li class="product-item">
+                        <div class="product-name">社交推理游戏陪玩平台 <span class="category-tag">游戏服务</span></div>
+                        <div class="product-description">专注狼人杀、鹅鸭杀等社交推理游戏的陪玩匹配平台，提供技能认证、语音房间、战绩统计、教学视频等功能，帮助玩家找到合适的游戏伙伴。</div>
+                    </li>
+                    <li class="product-item">
+                        <div class="product-name">游戏主题线下剧本杀 <span class="category-tag">线下娱乐</span></div>
+                        <div class="product-description">将鹅鸭杀等热门游戏改编为线下沉浸式剧本杀体验，结合实景布置、角色扮演、道具互动，打造新型社交娱乐场景，适合团建和聚会。</div>
+                    </li>
+                    <li class="product-item">
+                        <div class="product-name">游戏IP周边潮玩 <span class="category-tag">消费品</span></div>
+                        <div class="product-description">开发鹅鸭杀角色的潮流玩具���毛绒公仔、盲盒系列，结合游戏内兑换码和限定皮肤，打通线上线下，提升品牌价值和用户粘性。</div>
+                    </li>
+                </ul>
             </div>
         </div>
 
-        <!-- Topic 11: 鹅鸭杀 -->
+        <!-- Topic 11: 长征十号甲火箭 -->
         <div class="topic-card">
             <div class="topic-header">
                 <div class="topic-title-section">
                     <div class="rank-badge">11</div>
-                    <div class="topic-title">鹅鸭杀</div>
+                    <div class="topic-title">长征十号甲火箭</div>
                 </div>
-                <div class="heat-badge">🔥 333,746</div>
+                <div class="heat-badge">🔥 279,851</div>
             </div>
             <div class="scores-section">
                 <div class="score-item">
-                    <div class="score-label">兴趣度 (80%)</div>
-                    <div class="score-value">83</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 83%"></div></div>
+                    <div class="score-label">兴趣分数 (80%)</div>
+                    <div class="score-value">90</div>
                 </div>
                 <div class="score-item">
-                    <div class="score-label">实用度 (20%)</div>
-                    <div class="score-value">78</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 78%"></div></div>
+                    <div class="score-label">实用分数 (20%)</div>
+                    <div class="score-value">70</div>
                 </div>
                 <div class="score-item">
                     <div class="score-label">综合评分</div>
-                    <div class="score-value">82</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 82%"></div></div>
+                    <div class="score-value">86.0</div>
                 </div>
             </div>
             <div class="products-section">
                 <div class="products-title">创新产品方案</div>
-                <div class="product-item">
-                    <div class="product-name">线下桌游版鹅鸭杀</div>
-                    <div class="product-description">开发实体卡牌和道具套装，适合家庭聚会和团建活动，增加面对面社交乐趣。</div>
-                </div>
-                <div class="product-item">
-                    <div class="product-name">鹅鸭杀主题剧本杀馆</div>
-                    <div class="product-description">结合剧本杀和狼人杀玩法，打造沉浸式实景推理空间，提供多样化剧本和角色体验。</div>
-                </div>
-                <div class="product-item">
-                    <div class="product-name">游戏陪玩社交平台</div>
-                    <div class="product-description">专注于派对游戏的陪玩匹配服务，提供技能认证、语音房间和赛事组织功能。</div>
-                </div>
+                <ul class="product-list">
+                    <li class="product-item">
+                        <div class="product-name">航天模型订阅盒子 <span class="category-tag">订阅服务</span></div>
+                        <div class="product-description">每月寄送中国航天最新成就的精密模型套件，配合详细说明书和视频教程，让用户在组装过程中学习航天知识，培养STEM兴趣。</div>
+                    </li>
+                    <li class="product-item">
+                        <div class="product-name">航天科技投资教育平台 <span class="category-tag">金融教育</span></div>
+                        <div class="product-description">面向普通投资者的航天产业投资教育平台，解读航天科技发展趋势、商业航天机会、相关上市公司分析，降低航天投资门槛。</div>
+                    </li>
+                </ul>
             </div>
         </div>
 
-        <!-- Topic 13: 李佳琦感谢助理旺旺 -->
+        <!-- Topic 12: 梦舟返回舱安全溅落于预定海域 -->
+        <div class="topic-card">
+            <div class="topic-header">
+                <div class="topic-title-section">
+                    <div class="rank-badge">12</div>
+                    <div class="topic-title">梦舟返回舱安全溅落于预定海域</div>
+                </div>
+                <div class="heat-badge">🔥 276,021</div>
+            </div>
+            <div class="scores-section">
+                <div class="score-item">
+                    <div class="score-label">兴趣分数 (80%)</div>
+                    <div class="score-value">88</div>
+                </div>
+                <div class="score-item">
+                    <div class="score-label">实用分数 (20%)</div>
+                    <div class="score-value">68</div>
+                </div>
+                <div class="score-item">
+                    <div class="score-label">综合评分</div>
+                    <div class="score-value">84.0</div>
+                </div>
+            </div>
+            <div class="products-section">
+                <div class="products-title">创新产品方案</div>
+                <ul class="product-list">
+                    <li class="product-item">
+                        <div class="product-name">航天任务实时追踪APP <span class="category-tag">工具应用</span></div>
+                        <div class="product-description">提供全球航天发射和任务的实时追踪，包含轨道可视化、倒计时提醒、任务详情、历史数据查询等功能，打造航天爱好者必备工具。</div>
+                    </li>
+                    <li class="product-item">
+                        <div class="product-name">太空旅游预订平台 <span class="category-tag">旅游服务</span></div>
+                        <div class="product-description">面向未来的商业太空旅游预订平台，提供亚轨道飞行、空间站体验等产品咨询和预订服务，为高净值人群提供太空梦想实现方案。</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Topic 13: 孙海洋夫妇将名下公司转给孙卓 -->
         <div class="topic-card">
             <div class="topic-header">
                 <div class="topic-title-section">
                     <div class="rank-badge">13</div>
-                    <div class="topic-title">李佳琦感谢助理旺旺</div>
+                    <div class="topic-title">孙海洋夫妇将名下公司转给孙卓</div>
                 </div>
-                <div class="heat-badge">🔥 290,473</div>
+                <div class="heat-badge">🔥 265,697</div>
             </div>
             <div class="scores-section">
                 <div class="score-item">
-                    <div class="score-label">兴趣度 (80%)</div>
-                    <div class="score-value">76</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 76%"></div></div>
+                    <div class="score-label">兴趣分数 (80%)</div>
+                    <div class="score-value">80</div>
                 </div>
                 <div class="score-item">
-                    <div class="score-label">实用度 (20%)</div>
-                    <div class="score-value">80</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 80%"></div></div>
+                    <div class="score-label">实用分数 (20%)</div>
+                    <div class="score-value">85</div>
                 </div>
                 <div class="score-item">
                     <div class="score-label">综合评分</div>
-                    <div class="score-value">77</div>
-                    <div class="score-bar"><div class="score-fill" style="width: 77%"></div></div>
+                    <div class="score-value">81.0</div>
                 </div>
             </div>
             <div class="products-section">
                 <div class="products-title">创新产品方案</div>
-                <div class="product-item">
-                    <div class="product-name">直播助理培训学院</div>
-                    <div class="product-description">提供专业直播助理技能培训课程，包括场控、选品、数据分析等，颁发行业认证证书。</div>
-                </div>
-                <div class="product-item">
-                    <div class="product-name">直播团队管理SaaS</div>
-                    <div class="product-description">为直播机构提供团队协作、任务分配、绩效考核和��酬管理的一体化解决方案。</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Topic 14: 易烊千玺 努力超越满江红 -->
-        <div class="topic-card">
+                <ul class="product-list">
+                    <li class="product-item">
+                        <div class="product-name">家族财富传承规划服
