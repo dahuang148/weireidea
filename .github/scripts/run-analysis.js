@@ -83,7 +83,11 @@ async function main() {
     const today = new Date().toISOString().split('T')[0];
     const userMessage = `Please execute the weibo-trend-analyzer skill.
 API Endpoint: ${WEIBO_API_ENDPOINT || 'https://weibo.com/ajax/side/hotSearch'}
-Generate report as: weibo-trend-report-${today}.html`;
+
+IMPORTANT: You must output the COMPLETE HTML code directly in your response.
+Do NOT just describe the report or say you've saved it.
+Output the full HTML starting with <!DOCTYPE html> and ending with </html>.
+The HTML filename should be: weibo-trend-report-${today}.html`;
 
     console.log('Calling Claude API...');
     const response = await callClaudeAPI([{ role: 'user', content: userMessage }], systemPrompt);
