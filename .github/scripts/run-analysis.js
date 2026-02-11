@@ -24,7 +24,7 @@ if (!CLAUDE_API_KEY) {
  */
 async function callClaudeAPI(messages, systemPrompt) {
   return new Promise((resolve, reject) => {
-    const url = new URL('/v1/messages', CLAUDE_API_BASE);
+    const url = new URL('/claude/aws/v1/messages', CLAUDE_API_BASE);
 
     const postData = JSON.stringify({
       model: 'claude-sonnet-4-5-20250929',
@@ -92,14 +92,18 @@ Generate report as: weibo-trend-report-${today}.html`;
     const text = response.content.filter(b => b.type === 'text').map(b => b.text).join('\n');
     console.log('Response preview:', text.substring(0, 300) + '...');
 
-    const files = fs.readdirSync(process.cwd());
-    const reportFile = files.find(f => /weibo-trend-report-\d{4}-\d{2}-\d{2}\.html/.test(f));
+    // Extract HTML content from response
+    const htmlMatch = text.match(/<!DOCTYPE html>[\s\S]*<\/html>/i);
 
-    if (reportFile) {
-      const stats = fs.statSync(reportFile);
-      console.log(`\n✅ Report: ${reportFile} (${(stats.size / 1024).toFixed(2)} KB)`);
+    if (htmlMatch) {
+      const htmlContent = htmlMatch[0];
+      const reportFileName = `weibo-trend-report-${today}.html`;
+      fs.writeFileSync(reportFileName, htmlContent, 'utf-8');
+      const stats = fs.statSync(reportFileName);
+      console.log(`\n✅ Report saved: ${reportFileName} (${(stats.size / 1024).toFixed(2)} KB)`);
     } else {
-      console.warn('\n⚠️  Report file not found');
+      console.warn('\n⚠️  No HTML content found in response');
+      console.log('Full response:', text);
     }
   } catch (error) {
     console.error('\n❌ Error:', error.message);
