@@ -241,7 +241,7 @@ CRITICAL: Output the FULL HTML code directly. Do NOT use any tool calls or funct
     }
 
     if (htmlContent && htmlContent.includes('<!DOCTYPE html>')) {
-      const reportFileName = `weibo-trend-report-${today}.html`;
+      const reportFileName = `index.html`;
       fs.writeFileSync(reportFileName, htmlContent, 'utf-8');
       const stats = fs.statSync(reportFileName);
       console.log(`\n✅ Report saved: ${reportFileName} (${(stats.size / 1024).toFixed(2)} KB)`);
