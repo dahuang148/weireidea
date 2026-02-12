@@ -8,258 +8,185 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; line-height: 1.6; }
         .container { max-width: 1000px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); overflow: hidden; }
-        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center; }
+        header { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 30px; text-align: center; }
         h1 { font-size: 28px; margin-bottom: 8px; }
-        .subtitle { opacity: 0.9; font-size: 14px; }
-        .content { padding: 30px; }
-        .trend-card { background: #f8f9fa; border-radius: 8px; padding: 20px; margin-bottom: 20px; border-left: 4px solid #667eea; }
-        .trend-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .trend-title { font-size: 18px; font-weight: 600; color: #2d3748; flex: 1; }
-        .rank-badge { background: #667eea; color: white; padding: 4px 12px; border-radius: 20px; font-size: 14px; font-weight: 600; margin-right: 10px; }
-        .heat { color: #e53e3e; font-weight: 600; font-size: 14px; }
-        .scores { display: flex; gap: 15px; margin: 12px 0; }
-        .score-item { flex: 1; background: white; padding: 10px; border-radius: 6px; text-align: center; }
-        .score-label { font-size: 12px; color: #718096; margin-bottom: 4px; }
-        .score-value { font-size: 20px; font-weight: 700; color: #667eea; }
-        .product-idea { background: white; padding: 12px; border-radius: 6px; margin-top: 10px; }
-        .product-label { font-size: 12px; color: #667eea; font-weight: 600; margin-bottom: 6px; }
-        .product-text { color: #4a5568; font-size: 14px; }
-        footer { background: #f7fafc; padding: 20px; text-align: center; color: #718096; font-size: 13px; }
+        .subtitle { opacity: 0.95; font-size: 14px; }
+        .topic { border-bottom: 1px solid #eee; padding: 25px 30px; transition: background 0.2s; }
+        .topic:hover { background: #f8f9fa; }
+        .topic:last-child { border-bottom: none; }
+        .topic-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .topic-title { font-size: 18px; font-weight: 600; color: #2c3e50; flex: 1; }
+        .rank { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; margin-right: 15px; }
+        .heat { color: #e74c3c; font-weight: 600; font-size: 14px; margin-left: 15px; }
+        .scores { display: flex; gap: 15px; margin-bottom: 12px; }
+        .score { background: #f8f9fa; padding: 8px 15px; border-radius: 20px; font-size: 13px; }
+        .score-label { color: #7f8c8d; margin-right: 5px; }
+        .score-value { font-weight: 600; color: #2c3e50; }
+        .interest { border-left: 3px solid #3498db; }
+        .utility { border-left: 3px solid #2ecc71; }
+        .product-idea { background: #fff9e6; border-left: 4px solid #f39c12; padding: 12px 15px; border-radius: 4px; color: #555; font-size: 14px; }
+        footer { background: #2c3e50; color: white; text-align: center; padding: 20px; font-size: 13px; }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🚀 微博热搜产品创新分析</h1>
+            <h1>🔥 微博热搜产品创新分析</h1>
             <p class="subtitle">基于Top 10热门话题的产品机会洞察</p>
         </header>
-        
-        <div class="content">
-            <div class="trend-card">
-                <div class="trend-header">
-                    <span class="rank-badge">#1</span>
-                    <span class="trend-title">微信9大更新</span>
-                    <span class="heat">🔥 1,143,096</span>
-                </div>
-                <div class="scores">
-                    <div class="score-item">
-                        <div class="score-label">兴趣指数</div>
-                        <div class="score-value">75</div>
-                    </div>
-                    <div class="score-item">
-                        <div class="score-label">实用指数</div>
-                        <div class="score-value">18</div>
-                    </div>
-                </div>
-                <div class="product-idea">
-                    <div class="product-label">💡 产品创意</div>
-                    <div class="product-text">开发"微信功能导航助手"小程序，用可视化方式展示新功能使用教程和场景案例。针对中老年用户提供语音引导和一键设置服务，降低新功能学习成本。</div>
-                </div>
-            </div>
 
-            <div class="trend-card">
-                <div class="trend-header">
-                    <span class="rank-badge">#2</span>
-                    <span class="trend-title">火箭回收</span>
-                    <span class="heat">🔥 824,841</span>
-                </div>
-                <div class="scores">
-                    <div class="score-item">
-                        <div class="score-label">兴趣指数</div>
-                        <div class="score-value">68</div>
-                    </div>
-                    <div class="score-item">
-                        <div class="score-label">实用指数</div>
-                        <div class="score-value">12</div>
-                    </div>
-                </div>
-                <div class="product-idea">
-                    <div class="product-label">💡 产品创意</div>
-                    <div class="product-text">推出"航天科技AR体验馆"应用，用户可通过手机观看火箭发射和回收的3D动画，了解航天技术原理。结合教育市场，为青少年提供STEM学习内容和互动游戏。</div>
-                </div>
+        <div class="topic">
+            <div class="topic-header">
+                <div class="rank">1</div>
+                <div class="topic-title">玫瑰丛生定档</div>
+                <div class="heat">🔥 1,090,167</div>
             </div>
-
-            <div class="trend-card">
-                <div class="trend-header">
-                    <span class="rank-badge">#3</span>
-                    <span class="trend-title">到中国过年成为热潮</span>
-                    <span class="heat">🔥 635,376</span>
-                </div>
-                <div class="scores">
-                    <div class="score-item">
-                        <div class="score-label">兴趣指数</div>
-                        <div class="score-value">72</div>
-                    </div>
-                    <div class="score-item">
-                        <div class="score-label">实用指数</div>
-                        <div class="score-value">19</div>
-                    </div>
-                </div>
-                <div class="product-idea">
-                    <div class="product-label">💡 产品创意</div>
-                    <div class="product-text">打造"春节文化体验管家"平台，为外国游客提供定制化春节旅游路线、民俗体验预订和多语言导游服务。整合年夜饭预订、庙会门票、传统手工艺体验等一站式服务。</div>
-                </div>
+            <div class="scores">
+                <div class="score interest"><span class="score-label">兴趣度:</span><span class="score-value">72/80</span></div>
+                <div class="score utility"><span class="score-label">实用度:</span><span class="score-value">14/20</span></div>
             </div>
-
-            <div class="trend-card">
-                <div class="trend-header">
-                    <span class="rank-badge">#4</span>
-                    <span class="trend-title">跟李现解锁淘宝闪购过年新发现</span>
-                    <span class="heat">🔥 推广</span>
-                </div>
-                <div class="scores">
-                    <div class="score-item">
-                        <div class="score-label">兴趣指数</div>
-                        <div class="score-value">58</div>
-                    </div>
-                    <div class="score-item">
-                        <div class="score-label">实用指数</div>
-                        <div class="score-value">16</div>
-                    </div>
-                </div>
-                <div class="product-idea">
-                    <div class="product-label">💡 产品创意</div>
-                    <div class="product-text">开发"明星同款购物助手"插件，自动识别明星推荐商品并比价，提供性价比分析和用户评价聚合。增加"年货清单智能规划"功能，根据家庭人数和预算推荐购物方案。</div>
-                </div>
+            <div class="product-idea">
+                <strong>产品创意:</strong> 开发"剧集追踪日历"小程序,用户可订阅心仪剧集定档提醒,并生成个性化追剧时间表。集成社交功能让粉丝组建观剧小组,实时弹幕互动。
             </div>
+        </div>
 
-            <div class="trend-card">
-                <div class="trend-header">
-                    <span class="rank-badge">#5</span>
-                    <span class="trend-title">沈腾找了个最帅的演自己</span>
-                    <span class="heat">🔥 625,942</span>
-                </div>
-                <div class="scores">
-                    <div class="score-item">
-                        <div class="score-label">兴趣指数</div>
-                        <div class="score-value">65</div>
-                    </div>
-                    <div class="score-item">
-                        <div class="score-label">实用指数</div>
-                        <div class="score-value">14</div>
-                    </div>
-                </div>
-                <div class="product-idea">
-                    <div class="product-label">💡 产品创意</div>
-                    <div class="product-text">推出"AI换脸短视频创作工具"，用户可将自己的脸替换到经典电影片段中，生成趣味短视频。提供明星同款滤镜和特效，满足用户娱乐社交需求。</div>
-                </div>
+        <div class="topic">
+            <div class="topic-header">
+                <div class="rank">2</div>
+                <div class="topic-title">体操运动员坠楼涉事教练被立案调查</div>
+                <div class="heat">🔥 787,172</div>
             </div>
-
-            <div class="trend-card">
-                <div class="trend-header">
-                    <span class="rank-badge">#6</span>
-                    <span class="trend-title">挪威选手冬奥摘铜后哭着自曝出轨</span>
-                    <span class="heat">🔥 598,206</span>
-                </div>
-                <div class="scores">
-                    <div class="score-item">
-                        <div class="score-label">兴趣指数</div>
-                        <div class="score-value">62</div>
-                    </div>
-                    <div class="score-item">
-                        <div class="score-label">实用指数</div>
-                        <div class="score-value">11</div>
-                    </div>
-                </div>
-                <div class="product-idea">
-                    <div class="product-label">💡 产品创意</div>
-                    <div class="product-text">开发"情感健康管理"应用，提供匿名情感咨询、心理压力测评和情绪日记功能。针对高压人群提供专业心理疏导服务和情感关系课程。</div>
-                </div>
+            <div class="scores">
+                <div class="score interest"><span class="score-label">兴趣度:</span><span class="score-value">65/80</span></div>
+                <div class="score utility"><span class="score-label">实用度:</span><span class="score-value">16/20</span></div>
             </div>
-
-            <div class="trend-card">
-                <div class="trend-header">
-                    <span class="rank-badge">#7</span>
-                    <span class="trend-title">孙海洋夫妇将名下公司转给孙卓</span>
-                    <span class="heat">🔥 477,418</span>
-                </div>
-                <div class="scores">
-                    <div class="score-item">
-                        <div class="score-label">兴趣指数</div>
-                        <div class="score-value">55</div>
-                    </div>
-                    <div class="score-item">
-                        <div class="score-item">
-                        <div class="score-label">实用指数</div>
-                        <div class="score-value">17</div>
-                    </div>
-                </div>
-                <div class="product-idea">
-                    <div class="product-label">💡 产品创意</div>
-                    <div class="product-text">打造"家族财富传承规划平台"，提供资产评估、税务筹划和法律咨询一站式服务。针对中小企业主提供代际传承方案设计和家族信托管理工具。</div>
-                </div>
+            <div class="product-idea">
+                <strong>产品创意:</strong> 推出"运动员权益保护平台",提供匿名举报通道、心理咨询服务和法律援助对接。利用区块链技术确保举报信息不可篡改,保护举报者隐私。
             </div>
+        </div>
 
-            <div class="trend-card">
-                <div class="trend-header">
-                    <span class="rank-badge">#8</span>
-                    <span class="trend-title">第一次见双胞胎不是一个物种</span>
-                    <span class="heat">🔥 455,197</span>
-                </div>
-                <div class="scores">
-                    <div class="score-item">
-                        <div class="score-label">兴趣指数</div>
-                        <div class="score-value">60</div>
-                    </div>
-                    <div class="score-item">
-                        <div class="score-label">实用指数</div>
-                        <div class="score-value">13</div>
-                    </div>
-                </div>
-                <div class="product-idea">
-                    <div class="product-label">💡 产品创意</div>
-                    <div class="product-text">开发"双胞胎成长记录"应用，提供差异化育儿建议和个性发展追踪。帮助父母记录两个孩子的不同特点，提供针对性教育方案和双胞胎家庭社区交流功能。</div>
-                </div>
+        <div class="topic">
+            <div class="topic-header">
+                <div class="rank">3</div>
+                <div class="topic-title">春运路上藏着这些马年彩蛋</div>
+                <div class="heat">🔥 618,611</div>
             </div>
-
-            <div class="trend-card">
-                <div class="trend-header">
-                    <span class="rank-badge">#9</span>
-                    <span class="trend-title">鹅鸭杀</span>
-                    <span class="heat">🔥 255,188</span>
-                </div>
-                <div class="scores">
-                    <div class="score-item">
-                        <div class="score-label">兴趣指数</div>
-                        <div class="score-value">70</div>
-                    </div>
-                    <div class="score-item">
-                        <div class="score-label">实用指数</div>
-                        <div class="score-value">15</div>
-                    </div>
-                </div>
-                <div class="product-idea">
-                    <div class="product-label">💡 产品创意</div>
-                    <div class="product-text">推出"社交推理游戏陪玩平台"，匹配同水平玩家组队，提供语音房间和战绩分析功能。增加游戏教学视频和策略分享社区，降低新手入门门槛。</div>
-                </div>
+            <div class="scores">
+                <div class="score interest"><span class="score-label">兴趣度:</span><span class="score-value">68/80</span></div>
+                <div class="score utility"><span class="score-label">实用度:</span><span class="score-value">17/20</span></div>
             </div>
+            <div class="product-idea">
+                <strong>产品创意:</strong> 创建"春运寻宝"AR互动游戏,旅客在车站、列车上扫描特定场景解锁马年主题虚拟礼物。收集全套可兑换实物奖品,增加旅途趣味性。
+            </div>
+        </div>
 
-            <div class="trend-card">
-                <div class="trend-header">
-                    <span class="rank-badge">#10</span>
-                    <span class="trend-title">饲养员娜娜被责令公开道歉</span>
-                    <span class="heat">🔥 182,700</span>
-                </div>
-                <div class="scores">
-                    <div class="score-item">
-                        <div class="score-label">兴趣指数</div>
-                        <div class="score-value">52</div>
-                    </div>
-                    <div class="score-item">
-                        <div class="score-label">实用指数</div>
-                        <div class="score-value">16</div>
-                    </div>
-                </div>
-                <div class="product-idea">
-                    <div class="product-label">💡 产品创意</div>
-                    <div class="product-text">开发"宠物科学饲养知识库"应用，提供专业饲养指南、健康监测和行为训练课程。建立宠物医生在线咨询服务，帮助饲养者避免常见错误，提升动物福利意识。</div>
-                </div>
+        <div class="topic">
+            <div class="topic-header">
+                <div class="rank">4</div>
+                <div class="topic-title">上淘宝春节不打烊年货小时达</div>
+                <div class="heat">🔥 推广</div>
+            </div>
+            <div class="scores">
+                <div class="score interest"><span class="score-label">兴趣度:</span><span class="score-value">58/80</span></div>
+                <div class="score utility"><span class="score-label">实用度:</span><span class="score-value">18/20</span></div>
+            </div>
+            <div class="product-idea">
+                <strong>产品创意:</strong> 开发"年货急救包"服务,针对春节突发需求(客人突然到访、食材不够等)提供30分钟极速配送。智能推荐应急年货组合,解决节日尴尬。
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-header">
+                <div class="rank">5</div>
+                <div class="topic-title">微博红包</div>
+                <div class="heat">🔥 557,339</div>
+            </div>
+            <div class="scores">
+                <div class="score interest"><span class="score-label">兴趣度:</span><span class="score-value">70/80</span></div>
+                <div class="score utility"><span class="score-label">实用度:</span><span class="score-value">15/20</span></div>
+            </div>
+            <div class="product-idea">
+                <strong>产品创意:</strong> 推出"创意红包生成器",用户可定制红包封面、添加语音祝福和AR特效。支持设置答题、猜谜等互动玩法,让抢红包更有仪式感和趣味性。
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-header">
+                <div class="rank">6</div>
+                <div class="topic-title">两名小孩扔爆竹致1200年古树起火</div>
+                <div class="heat">🔥 385,843</div>
+            </div>
+            <div class="scores">
+                <div class="score interest"><span class="score-label">兴趣度:</span><span class="score-value">62/80</span></div>
+                <div class="score utility"><span class="score-label">实用度:</span><span class="score-value">17/20</span></div>
+            </div>
+            <div class="product-idea">
+                <strong>产品创意:</strong> 开发"文物守护者"教育游戏,儿童通过虚拟角色学习文物保护知识,完成任务获得"小小守护者"徽章。家长端可查看孩子学习进度和安全教育报告。
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-header">
+                <div class="rank">7</div>
+                <div class="topic-title">春节中国赴日旅客量腰斩了</div>
+                <div class="heat">🔥 355,305</div>
+            </div>
+            <div class="scores">
+                <div class="score interest"><span class="score-label">兴趣度:</span><span class="score-value">55/80</span></div>
+                <div class="score utility"><span class="score-label">实用度:</span><span class="score-value">16/20</span></div>
+            </div>
+            <div class="product-idea">
+                <strong>产品创意:</strong> 推出"国内替代游"智能规划平台,根据用户原定日本行程推荐国内相似体验目的地(如温泉、美食、文化景点)。提供一键转换行程和退改签协助服务。
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-header">
+                <div class="rank">8</div>
+                <div class="topic-title">生小孩需要一个发达的前额叶</div>
+                <div class="heat">🔥 298,181</div>
+            </div>
+            <div class="scores">
+                <div class="score interest"><span class="score-label">兴趣度:</span><span class="score-value">60/80</span></div>
+                <div class="score utility"><span class="score-label">实用度:</span><span class="score-value">18/20</span></div>
+            </div>
+            <div class="product-idea">
+                <strong>产品创意:</strong> 创建"育儿准备度测评"APP,通过心理测试、财务规划、生活模拟等模块帮助年轻人科学评估是否做好生育准备。提供个性化改善建议和育儿知识库。
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-header">
+                <div class="rank">9</div>
+                <div class="topic-title">薛文姐35年前乳汁救武警今患癌</div>
+                <div class="heat">🔥 277,684</div>
+            </div>
+            <div class="scores">
+                <div class="score interest"><span class="score-label">兴趣度:</span><span class="score-value">58/80</span></div>
+                <div class="score utility"><span class="score-label">实用度:</span><span class="score-value">19/20</span></div>
+            </div>
+            <div class="product-idea">
+                <strong>产品创意:</strong> 开发"恩情追踪"公益平台,帮助曾经施恩者与受助者重新建立联系。当施恩者遇到困难时,平台自动通知受助者,促成"善意循环"和互助网络。
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-header">
+                <div class="rank">10</div>
+                <div class="topic-title">成毅朱瞻基特辑</div>
+                <div class="heat">🔥 269,838</div>
+            </div>
+            <div class="scores">
+                <div class="score interest"><span class="score-label">兴趣度:</span><span class="score-value">66/80</span></div>
+                <div class="score utility"><span class="score-label">实用度:</span><span class="score-value">13/20</span></div>
+            </div>
+            <div class="product-idea">
+                <strong>产品创意:</strong> 推出"历史人物AI对话"应用,用户可与朱瞻基等历史人物进行虚拟对话,了解历史背景和人物性格。结合剧集内容提供深度解读和历史知识拓展。
             </div>
         </div>
 
         <footer>
-            <p>📊 数据来源：微博热搜榜 | 生成时间：2025年</p>
-            <p>本报告基于社交媒体趋势分析，仅供产品创新参考</p>
+            <p>📊 数据来源: 微博热搜榜 | 生成时间: 2025年 | 分析维度: 兴趣度(0-80) + 实用度(0-20)</p>
         </footer>
     </div>
 </body>
